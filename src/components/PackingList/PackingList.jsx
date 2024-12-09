@@ -4,11 +4,11 @@ import { initialItems } from './initialItems'
 
 
 
-const PackingList = () => {
+const PackingList = ( {items} ) => {
   return (
     <div className='list'>
     <ul className='list'>
-      {initialItems.map((item) => (
+      {items.map((item) => (
         <Item item={item} key={item.id} />
       ))}
     </ul>

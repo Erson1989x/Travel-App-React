@@ -1,9 +1,10 @@
 import React from "react";
 import { useState } from "react";
 
-export const Form = () => {
+export const Form = ( {handleAddItems} ) => {
   const [description, setDescription] = useState("");
   const [quantity, setquantity] = useState(1);
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -17,6 +18,8 @@ export const Form = () => {
       id: Date.now(),
     };
     console.log(newItem);
+
+    handleAddItems(newItem);
 
     setDescription("");
     setquantity(1);
