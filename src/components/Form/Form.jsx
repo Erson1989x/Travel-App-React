@@ -29,7 +29,7 @@ export const Form = ( {handleAddItems} ) => {
   return (
     <form className="add-form" onSubmit={handleSubmit}>
       <h3>What do you need for your trip ?</h3>
-      <select defaultValue={1} value={quantity} onChange={(e) => setquantity(Number(e.target.value))} >
+      <select value={quantity} onChange={(e) => setquantity(Number(e.target.value))} >
         {Array.from({ length: 20 }, (_, i) => i + 1).map((i) => (
           <option key={i} value={i}>
             {i}
