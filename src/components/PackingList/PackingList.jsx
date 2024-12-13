@@ -1,18 +1,46 @@
-import React from 'react'
-import Item from './Items'
+import React from "react";
+import Item from "./Items";
+import { useState } from "react";
 
+const PackingList = ({ items, handleDeleteItem, handleToggleItem }) => {
+  const [sortBy, setSortBy] = useState("input");
 
+  let sortedItems;;
 
-const PackingList = ( {items, handleDeleteItem, handleToggleItem} ) => {
+  if (sortBy === "input") sortedItems = items;
+
+  if (sortBy === "description")
+    sortedItems = items
+      .slice()
+      .sort((a, b) => a.description.localeCompare(b.description));
+
+  if (sortBy === "packed")
+    sortedItems = items
+      .slice()
+      .sort((a, b) => Number(a.packed) - Number(b.packed));
+
   return (
-    <div className='list'>
-    <ul className='list'>
-      {items.map((item) => (
-        <Item item={item} handleToggleItem={handleToggleItem} handleDeleteItem={handleDeleteItem} key={item.id} />
-      ))}
-    </ul>
-    </div>
-  )
-}
+    <div className="list">
+      <ul className="list">
+        {sortedItems.map((item) => (
+          <Item
+            item={item}
+            handleToggleItem={handleToggleItem}
+            handleDeleteItem={handleDeleteItem}
+            key={item.id}
+          />
+        ))}
+      </ul>
 
-export default PackingList
+      <div className="actions">
+        <select value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
+          <option value="input">Sort by input order</option>
+          <option value="description">Sort by description</option>
+          <option value="packed">Sort by packed status</option>
+        </select>
+      </div>
+    </div>
+  );
+};
+
+export default PackingList;

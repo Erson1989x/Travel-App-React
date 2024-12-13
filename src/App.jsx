@@ -6,7 +6,7 @@ import Stats from "./components/Stats/Stats";
 import { useState } from "react";
 import initialItems from "./components/PackingList/initialItems";
 const App = () => {
-  const [items, setItems] = useState(initialItems);
+  const [items, setItems] = useState([]);
 
   const handleAddItems = (item) => {
     setItems((items) => [...items, item]);
@@ -25,7 +25,7 @@ const App = () => {
       <Logo />
       <Form handleAddItems={handleAddItems} />
       <PackingList handleToggleItem={handleToggleItem} handleDeleteItem={handleDeleteItem} items={items} />
-      <Stats />
+      <Stats items={items} />
     </div>
   );
 };
