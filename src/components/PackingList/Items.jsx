@@ -1,12 +1,12 @@
 import React from "react";
 
-const Item = ({ item }) => {
+const Item = ({ item, handleDeleteItem }) => {
   return (
     <li>
       <span style={item.packed ? { textDecoration: "line-through" } : {  }}>
         {item.description} - {item.quantity}{" "}
       </span>
-      <button style={{ color: "red", fontSize: "3rem" }}>&times;</button>
+      <button onClick={() => handleDeleteItem(item.id)} style={{ color: "red", fontSize: "3rem" }}>&times;</button>
     </li>
   );
 };
